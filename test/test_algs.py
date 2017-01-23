@@ -1,6 +1,6 @@
 import numpy as np
 
-from example import algs
+from hw1 import algs
 
 
 def test_pointless_sort():
@@ -64,6 +64,16 @@ def test_bubblesort_many_elements():
 
     res = algs.bubblesort(x)
     exp = np.array([0, 1, 1, 2, 4])
+
+    assert np.array_equal(res, exp)
+
+
+def test_bubblesort_many_elements_even():
+
+    x = np.array([1, 2, 4, 0, 1, -1])
+
+    res = algs.bubblesort(x)
+    exp = np.array([-1, 0, 1, 1, 2, 4])
 
     assert np.array_equal(res, exp)
 
@@ -148,6 +158,16 @@ def test_quicksort_many_elements():
 
     res = algs.quicksort(x)
     exp = np.array([0, 1, 1, 2, 4])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_many_elements_even():
+
+    x = np.array([1, 2, 4, 0, 1, -1])
+
+    res = algs.quicksort(x)
+    exp = np.array([-1, 0, 1, 1, 2, 4])
 
     assert np.array_equal(res, exp)
 
