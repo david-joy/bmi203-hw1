@@ -68,6 +68,16 @@ def test_bubblesort_many_elements():
     assert np.array_equal(res, exp)
 
 
+def test_bubblesort_many_elements_ordered():
+
+    x = np.array([0, 1, 1, 2, 4])
+
+    res = algs.bubblesort(x)
+    exp = np.array([0, 1, 1, 2, 4])
+
+    assert np.array_equal(res, exp)
+
+
 def test_bubblesort_many_chr_elements():
 
     x = np.array(['a', 'c', 'b', 'a', 'b'])
@@ -80,8 +90,8 @@ def test_bubblesort_many_chr_elements():
 
 def test_bubblesort_random_array():
 
-    # generate random vector of length 10
-    x = np.random.rand(10)
+    # generate random vector of length 100
+    x = np.random.rand(100)
 
     res = algs.bubblesort(x)
 
@@ -94,9 +104,85 @@ def test_bubblesort_random_array():
     assert np.array_equal(res, exp)
 
 
-def test_quicksort():
+def test_quicksort_zero_elements():
+    x = np.array([])
+
+    res = algs.quicksort(x)
+    exp = np.array([])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_one_element():
+    x = np.array([7])
+
+    res = algs.quicksort(x)
+    exp = np.array([7])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_two_elements_ordered():
+
+    x = np.array([2, 7])
+
+    res = algs.quicksort(x)
+    exp = np.array([2, 7])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_two_elements_disordered():
+
+    x = np.array([5, -3])
+
+    res = algs.quicksort(x)
+    exp = np.array([-3, 5])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_many_elements():
 
     x = np.array([1, 2, 4, 0, 1])
-    # for now, just attempt to call the quicksort function, should
-    # actually check output
-    algs.quicksort(x)
+
+    res = algs.quicksort(x)
+    exp = np.array([0, 1, 1, 2, 4])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_many_elements_ordered():
+
+    x = np.array([0, 1, 1, 2, 4])
+
+    res = algs.quicksort(x)
+    exp = np.array([0, 1, 1, 2, 4])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_many_chr_elements():
+
+    x = np.array(['a', 'c', 'b', 'a', 'b'])
+
+    res = algs.quicksort(x)
+    exp = np.array(['a', 'a', 'b', 'b', 'c'])
+
+    assert np.array_equal(res, exp)
+
+
+def test_quicksort_random_array():
+
+    # generate random vector of length 100
+    x = np.random.rand(100)
+
+    res = algs.quicksort(x)
+
+    # Verify invariant
+    assert np.all(res[1:] >= res[:-1])
+
+    # compare to reference implementation
+    exp = np.sort(x)
+
+    assert np.array_equal(res, exp)

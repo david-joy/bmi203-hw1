@@ -33,8 +33,48 @@ def bubblesort(x):
     return x
 
 
+def _quicksort_partition(x, p, r):
+    # Work out where we should split the array to partition it
+    pivot_item = x[p]
+    left = p
+    right = r
+    keepgoing = True
+    while keepgoing:
+        # Move left while item less than pivot
+        while left <= right and x[left] <= pivot_item:
+            left += 1
+        # Move right while item greater than pivot
+        while right >= left and x[right] > pivot_item:
+            right -= 1
+        if left < right:
+            # swap left and right
+            x[left], x[right] = x[right], x[left]
+        else:
+            # Pointers crossed, we're done
+            keepgoing = False
+    # Right is the final position for the pivot
+    x[p] = x[right]
+    x[right] = pivot_item
+    return right
+
+
+def _quicksort(x, p, r):
+    # Implement the inplace quicksort function
+    if r > p:
+        pivot = _quicksort_partition(x, p, r)
+        _quicksort(x, p, pivot - 1)
+        _quicksort(x, pivot + 1, r)
+
+
 def quicksort(x):
+    """ This function is a wrapper that sets up the recursion
+
+    It then calls _quicksort with the appropriate arguments
     """
-    Describe how you are sorting `x`
-    """
-    return
+    n = x.shape[0]
+    # Any list with fewer than 2 element is sorted
+    if n < 2:
+        return x.copy()
+    x = x.copy()  # Make a copy of x we can mess with
+    _quicksort(x, 0, n - 1)  # Do an inplace sort
+    return x  # Return the sorted copy
