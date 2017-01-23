@@ -4,6 +4,7 @@
 import numpy as np
 from .algs import quicksort, bubblesort
 
+
 def run_stuff():
     """
     This function is called in `__main__.py`
